@@ -1,0 +1,17 @@
+{
+  "name": "jest-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/upperCaseTest.js test/evenArrayTest.js test/evenTest.js test/getHourTest.js test/numberMonthTest.js test/sortArrayTest.js test/stringLengthTest.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^28.0.3",
+    "mocha": "^10.0.0"
+  },
+  "dependencies": {},
+  "description": ""
+}
