@@ -1,0 +1,95 @@
+# Simple Functions in Node
+
+Imagen con implementacion Node que contiene servicios con funciones sencillas implementadas en node
+
+Forma de implementacion
+
+Notas importantes
+El servicio HTTP realiza una exposicion en el puerto 8080 de forma interna, se debera de realizar el mapeo y apertura del puerto de forma adecuada
+
+# Docker Run
+
+docker run -d -p 8080:8080 --name mocha-app luishunken17/mocha-app:1.0.0
+
+La aplicacion contiene varios servicios expuestos para su uso, todos estos estan basados en servicios GET para tener una mayor facilidad de uso, cada uno de estos tendran una respuesta JSON equivalente con el resultado por operacion
+
+# Rest Call
+
+Se expone un servicio GET de tipo REST para realizar las consultas
+
+Ejemplo de peticion:
+
+## Rest Call Even Numbers
+
+Metodo para conocer si un numero es par
+
+GET http://localhost:8080/functions/even/{{number}}
+
+Donde number es el parametro a procesar
+
+## Rest Call String Length
+
+Metodo para conocer la longitud de un String
+
+GET http://localhost:8080/functions/string/{{cadena}}
+
+Donde cadena es el String que se quiere evaluar
+
+## Rest Call Number Based on Week
+
+Metodo para realizar un calculo donde el numero de la semana
+
+GET http://localhost:8080/functions/number-week/{{number}}
+
+Donde number es el parametro a procesar
+
+## Rest Call Get Current Hour
+
+Metodo que te da como resultado la hora actual
+
+GET http://localhost:8080/functions/get-hour/
+
+## Rest Call String to Upper Case
+
+Metodo que te convierte una cadena en Mayusculas o UpperCase
+
+GET http://localhost:8080/functions/upper-case/{{cadena}}
+
+Donde cadena es el String que se quiere transformar
+
+## Respuestas de Servicios
+
+Todas las respuestas de los servicios tendran la misma estructura. Un ejemplo de respuesta seria:
+
+```json
+{
+  "result": "{{RESULT}}"
+}
+```
+
+# Node Shell
+
+Otra forma para hacer uso de la imagen es que una vez que se encuentre activo el contenedor se ingrese a la consola o shell de la aplicacion para hacer eso se deberan de seguir los siguientes comandos para ejecutar cada una de las funciones
+
+## Ingreso a la Terminal del Contenedor
+
+```shell
+sudo docker exec -it mocha-app /bin/sh
+```
+
+## Ejecucion en Node
+
+Se colocan las diferentes lineas a ejecutar para poder ver las diferentes funciones disponibles, los parametros podran ser cambiados dependiendo de la necesidad.
+
+```javascript
+node
+const functionClass = require('/app/node/functions');
+let funciones = new functionClass();
+funciones.getStringLength('123');
+funciones.isArrayEven([2,4,6,8,10]);
+funciones.getHour(new Date());
+funciones.numberMonth(5);
+funciones.sortArray([-10,-1,1,2,2,5,10]);
+funciones.getStringLength('123456');
+funciones.upperCase('abc1234');
+```
